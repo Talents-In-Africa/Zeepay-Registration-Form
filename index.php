@@ -1,4 +1,9 @@
-<html class="loaded" lang="en" data-textdirection="ltr">
+<?php 
+    session_start();
+    include_once "img.php"
+?>
+<!DOCTYPE html>
+<html>
 <!-- BEGIN: Head-->
 
 <head>

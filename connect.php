@@ -25,6 +25,9 @@
 
 
     if (isset($_POST)) {
+        if( isset($_POST['userName']) && isset($_POST['phoneNumber']) &&
+        isset($_POST['email']) && isset($_POST['locationAddress']) && 
+        isset($_POST['region']) && isset($_POST['profilePicture']) ){
 
         $userName = $_POST["userName"];
         $phoneNumber = $_POST["phoneNumber"];
@@ -36,7 +39,7 @@
         echo "Can not Continue";
         exit;
     } 
-    
+}
 
     if(isset($_POST["businessOwnership"])){
         $businessOwnership = $_POST["businessOwnership"];
@@ -150,7 +153,7 @@
         $locationAddress, $region, $profilePhoto, $businessName, $landmark, $accountNumber,
         $walletNetwork, $walletNumber, $bankName, $bankBranch, $businessDocument, $walletNumber);
         $stmt->execute();
-        echo "Registered successfully";
+        // echo "Registered successfully";
 
         $stmt->close();
         $conn->close();
