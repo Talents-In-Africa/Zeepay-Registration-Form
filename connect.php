@@ -1,5 +1,5 @@
  <?php  
-// var_dump($_POST);
+// var_dump($_FILES);
 // exit;
 
      $userName = '';
@@ -27,7 +27,7 @@
     if (isset($_POST)) {
         if( isset($_POST['userName']) && isset($_POST['phoneNumber']) &&
         isset($_POST['email']) && isset($_POST['locationAddress']) && 
-        isset($_POST['region']) && isset($_POST['profilePicture']) ){
+        isset($_POST['region']) && isset($_FILES['profilePicture']) ){
 
         $userName = $_POST["userName"];
         $phoneNumber = $_POST["phoneNumber"];
