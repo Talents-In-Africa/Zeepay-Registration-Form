@@ -130,7 +130,8 @@
 
 
 
-
+echo "Going to db now";
+exit;
 
     // Datebase Connection
     $host = "localhost";
