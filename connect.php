@@ -1,6 +1,6 @@
  <?php
-    var_dump($_POST);
-    exit;
+    //var_dump($_POST);
+    //exit;
     require('db/db_connection.php');
     require('services/process_file.php');
     $userName = '';
@@ -133,7 +133,7 @@ locationAddress, region, profilePicture, businessName,	businessNumber,  business
 ghPostAddress, landmark, paymentOption, accountNumber, walletNetwork, walletName, walletNumber, bankName, bankBranch, businessDocument)  
 VALUES(:fuserName, :fphoneNumber, :femail, :flocationAddress, :fregion, :fprofilePicture, :fbusinessName, 
 :fbusinessNumber,  :fbusinessEmail, :fbusinessAddress, :fghPostAddress, :flandmark,	:fpaymentOption, :faccountNumber,
-:fwalletNetwork, :fwalletName, :fwalletNumber :fbankName, :fbankBranch, :fbusinessDocument )");
+:fwalletNetwork, :fwalletName, :fwalletNumber, :fbankName, :fbankBranch, :fbusinessDocument )");
 $insert_stmt->bindParam(":fuserName", $userName);
 $insert_stmt->bindParam(":fphoneNumber", $phoneNumber);
 $insert_stmt->bindParam(":femail",  $email);
