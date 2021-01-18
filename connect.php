@@ -1,6 +1,5 @@
  <?php
-    //var_dump($_POST);
-    //exit;
+    
     require('db/db_connection.php');
     require('services/process_file.php');
     $userName = '';
