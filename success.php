@@ -59,7 +59,7 @@
         <div class="col-12 col-md-6">
           <!-- Content-->
           <div class="welcome-content pr-3">
-            <h2 class="wow fadeInUp" data-wow-delay="100ms" data-wow-duration="1000ms"> Registration Successful
+            <h2 class="wow fadeInUp" data-wow-delay="100ms" data-wow-duration="1000ms"> Registered Successfully
             </h2>
             
             <p class="mb-4 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1000ms">Thank you.</p>

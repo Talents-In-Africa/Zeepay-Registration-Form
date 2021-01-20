@@ -8,7 +8,7 @@ function processFileUpload($name, $type, $size, $tempName, $expectedFileType ,$m
     }
     if($size < $max_size){
         move_uploaded_file($tempName, $uploadPath);
-        echo "File Uploaded";
+        //echo "File Uploaded";
         return ['status'=>'success','message'=>'File uploaded', 'path'=> $uploadPath];
     }else{
         return ['status'=>'error','message'=>'File larger than max size'];

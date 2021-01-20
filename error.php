@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags-->
-  <!-- Title-->
+  <!-- Title--> 
   <title>Talents In Africa | Talents Searching Platform In Africa</title>
   <!-- Favicon-->
   <link rel="icon" href="img/core-img/favicon.ico">
@@ -61,9 +61,9 @@
           <div class="welcome-content pr-3">
             <h2 class="wow fadeInUp" data-wow-delay="100ms" data-wow-duration="1000ms">Oops, Registration failed
             </h2>
-            <p class="mb-4 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1000ms">Please fill all fields.</p>
+            <p class="mb-4 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1000ms"><?php echo base64_decode($_GET['message']);?>.</p>
             <div class="btn-group-one wow fadeInUp" data-wow-delay="500ms" data-wow-duration="1000ms"><a
-                class="btn radix-btn white-btn mt-3" href="job-listing.html">Back To Registration Page</a>
+                class="btn radix-btn white-btn mt-3" href="index.html">Back To Registration Page</a>
             </div>
           </div>
         </div>
