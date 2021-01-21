@@ -87,8 +87,8 @@
 
         if ($businessOwnership == "Yes") {
             if (
-                isset($_POST['businessName']) && isset($_POST['businessNumber']) &&isset($_POST['businessAddress']) &&
-                isset($_FILES['businessDocument']) && isset($_FILES['ghPostAddress']) && isset($_POST['landmark']) && isset($_FILES['photoID']) && isset($_POST['typeOfBusiness']) && isset($_POST['businessEmail'])
+                isset($_POST['businessName']) && isset($_POST['businessNumber']) && isset($_POST['businessAddress']) &&
+                isset($_FILES['businessDocument']) && isset($_POST['ghPostAddress']) && isset($_POST['landmark']) && isset($_FILES['photoID']) && isset($_POST['typeOfBusiness']) && isset($_POST['businessEmail'])
             ) {
 
 
@@ -169,7 +169,8 @@
                 $businessDocument = $uploadedFile['path'];
                 $photoID = $uploadedID['path'];
             } else {
-                header("Location: error.php");
+                $errorEncoded = base64_encode("An unknown error was encountered");
+                header("Location: error.php?message".$errorEncoded);
                 exit();
             }
         }
