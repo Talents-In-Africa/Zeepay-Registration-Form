@@ -98,18 +98,13 @@
             // exit;
             if (
                 isset($_POST['businessName']) && isset($_POST['businessNumber']) && isset($_POST['businessAddress']) &&
-                isset($_FILES['businessDocument']) && isset($_POST['ghPostAddress']) && isset($_POST['landmark']) && isset($_FILES['photoID']) && isset($_POST['typeOfBusiness']) && isset($_POST['businessEmail'])
+                isset($_FILES['businessDocument']) && isset($_POST['ghPostAddress']) && isset($_POST['landmark']) && isset($_FILES['photoID']) && isset($_POST['typeOfBusiness']) 
             ) 
             {
 
 
                 if ($_POST["businessName"] === '' || $_POST["businessName"] == null) {
                     $errorEncoded = base64_encode("Enter business Name");
-                    header("location: error.php?message=" . $errorEncoded);
-                    exit;
-                }
-                if ($_POST["businessEmail"] === '' || $_POST["businessEmail"] == null) {
-                    $errorEncoded = base64_encode("Enter business Email");
                     header("location: error.php?message=" . $errorEncoded);
                     exit;
                 }
@@ -171,7 +166,6 @@
                     exit;
                 }
                 $businessName = $_POST["businessName"];
-                $businessEmail = $_POST["businessEmail"];
                 $businessNumber = $_POST["businessNumber"];
                 $businessAddress = $_POST["businessAddress"];
                 $landmark = $_POST["landmark"];
