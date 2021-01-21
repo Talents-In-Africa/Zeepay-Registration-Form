@@ -129,12 +129,12 @@
                     header("location: error.php?message=" . $errorEncoded);
                     exit;
                 }
-                if ($_FILES["businessDocument"] === '' || $_POST["businessDocument"] == null) {
+                if ($_FILES["businessDocument"] === '' || $_FILES["businessDocument"] == null) {
                     $errorEncoded = base64_encode("Upload business document");
                     header("location: error.php?message=" . $errorEncoded);
                     exit;
                 }
-                if ($_FILES["photoID"] === '' || $_POST["photoID"] == null) {
+                if ($_FILES["photoID"] === '' || $_FILES["photoID"] == null) {
                     $errorEncoded = base64_encode("Upload photo ID");
                     header("location: error.php?message=" . $errorEncoded);
                     exit;
@@ -185,7 +185,7 @@
         $paymentOption = $_POST["paymentOption"];
 
         if ($paymentOption == "bank") {
-            // var_dump($_POST );
+            // var_dump($_POST);
             // exit;
 
             if (
@@ -228,23 +228,42 @@
                 isset($_POST["walletNetwork"]) && isset($_POST["walletNumber"]) &&
                 isset($_POST["walletName"])
             ) {
+                
+                    if ($_POST["walletNetwork"] === '' || $_POST["walletNetwork"] == null) {
+                        $errorEncoded = base64_encode("Enter mobile wallet network");
+                        header("location: error.php?message=" . $errorEncoded);
+                        exit;
+                    }
+                    if ($_POST["walletNumber"] === '' || $_POST["walletNumber"] == null) {
+                        $errorEncoded = base64_encode("Enter mobile wallet number");
+                        header("location: error.php?message=" . $errorEncoded);
+                        exit;
+                    }
+                    if ($_POST["walletName"] === '' || $_POST["walletName"] == null) {
+                        $errorEncoded = base64_encode("Enter mobile wallet name");
+                        header("location: error.php?message=" . $errorEncoded);
+                        exit;
+                    }
                 $walletNetwork = $_POST["walletNetwork"];
                 $walletNumber = $_POST["walletNumber"];
                 $walletName = $_POST["walletName"];
-            } else {
-                echo "wallet details required";
-                exit;
             }
-        }
+                else {
+                    $errorEncoded = base64_encode("An unknown error was encountered");
+                    header("Location: error.php?message".$errorEncoded);
+                    exit();
+                } 
+                
+            }
     }
 
 
-    $insert_stmt = $db->prepare("INSERT INTO registration (userName, phoneNumber, email, 
+$insert_stmt = $db->prepare("INSERT INTO registration (userName, phoneNumber, email, 
 locationAddress, region, profilePicture, businessName,	businessNumber,  businessEmail, businessAddress, 
-ghPostAddress, landmark, paymentOption, accountNumber, walletNetwork, walletName, walletNumber, bankName, bankBranch, businessDocument)  
+ghPostAddress, landmark, paymentOption, accountNumber, walletNetwork, walletName, walletNumber, bankName, bankBranch, businessDocument, typeOfBusiness, photoID)  
 VALUES(:fuserName, :fphoneNumber, :femail, :flocationAddress, :fregion, :fprofilePicture, :fbusinessName, 
 :fbusinessNumber,  :fbusinessEmail, :fbusinessAddress, :fghPostAddress, :flandmark,	:fpaymentOption, :faccountNumber,
-:fwalletNetwork, :fwalletName, :fwalletNumber, :fbankName, :fbankBranch, :fbusinessDocument )");
+:fwalletNetwork, :fwalletName, :fwalletNumber, :fbankName, :fbankBranch, :fbusinessDocument, :ftypeOfBusiness, :fphotoID)");
     $insert_stmt->bindParam(":fuserName", $userName);
     $insert_stmt->bindParam(":fphoneNumber", $phoneNumber);
     $insert_stmt->bindParam(":femail",  $email);
@@ -265,6 +284,8 @@ VALUES(:fuserName, :fphoneNumber, :femail, :flocationAddress, :fregion, :fprofil
     $insert_stmt->bindParam(":fbankName", $bankName);
     $insert_stmt->bindParam(":fbankBranch", $bankBranch);
     $insert_stmt->bindParam(":fbusinessDocument", $businessDocument);
+    $insert_stmt->bindParam(":ftypeOfBusiness", $typeOfBusiness);
+    $insert_stmt->bindParam(":fphotoID", $photoID);
 
 
 
