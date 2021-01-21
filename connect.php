@@ -26,6 +26,7 @@
     $businessDocument = '';
     $typeOfBusiness = '';
     $photoID = '';
+    $dateOfBirth = '';
 
 
 
@@ -34,6 +35,7 @@
             isset($_POST['userName']) && isset($_POST['phoneNumber']) &&
             isset($_POST['email']) && isset($_POST['locationAddress']) &&
             isset($_POST['region']) && isset($_FILES['profilePicture'])
+            && isset($_POST['dateOfBirth'])
         ) {
             $profilePicture = $_FILES["profilePicture"];
             //start process picture
@@ -69,17 +71,19 @@
                 header("location: error.php?message=" . $errorEncoded);
                 exit;
             }
+            if ($_POST["dateOfBirth"] === '' || $_POST["dateOfBirth"] == null) {
+                $errorEncoded = base64_encode("Enter your date of birth");
+                header("location: error.php?message=" . $errorEncoded);
+                exit;
+            }
             $userName = $_POST["userName"];
             $phoneNumber = $_POST["phoneNumber"];
             $email = $_POST["email"];
             $locationAddress = $_POST["locationAddress"];
             $region = $_POST["region"];
+            $dateOfBirth = $_POST["dateOfBirth"];
             $profilePicture = $uploadedFile['path'];
-        } else {
-            header("Location: error.php");
-            exit();
-            // exit;
-        }
+        } 
     } else {
         header("Location: index.html");
         exit();
@@ -93,13 +97,19 @@
             // var_dump($_POST);
             // exit;
             if (
-                isset($_POST['businessName']) && isset($_POST['businessNumber']) &&
-                isset($_FILES['businessDocument']) && isset($_FILES['photoID']) && isset($_POST['landmark']) && isset($_POST['typeOfBusiness'] ) 
-            ) {
+                isset($_POST['businessName']) && isset($_POST['businessNumber']) && isset($_POST['businessAddress']) &&
+                isset($_FILES['businessDocument']) && isset($_POST['ghPostAddress']) && isset($_POST['landmark']) && isset($_FILES['photoID']) && isset($_POST['typeOfBusiness']) && isset($_POST['businessEmail'])
+            ) 
+            {
 
 
                 if ($_POST["businessName"] === '' || $_POST["businessName"] == null) {
                     $errorEncoded = base64_encode("Enter business Name");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+                if ($_POST["businessEmail"] === '' || $_POST["businessEmail"] == null) {
+                    $errorEncoded = base64_encode("Enter business Email");
                     header("location: error.php?message=" . $errorEncoded);
                     exit;
                 }
@@ -108,13 +118,34 @@
                     header("location: error.php?message=" . $errorEncoded);
                     exit;
                 }
+                if ($_POST["businessAddress"] === '' || $_POST["businessAddress"] == null) {
+                    $errorEncoded = base64_encode("Enter business address");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
                 if ($_POST["landmark"] === '' || $_POST["landmark"] == null) {
                     $errorEncoded = base64_encode("Enter business landmark");
                     header("location: error.php?message=" . $errorEncoded);
                     exit;
                 }
+                if ($_POST['ghPostAddress'] === '' || $_POST["ghPostAddress"] == null) {
+                    $errorEncoded = base64_encode("Enter ghana post address");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+                
                 if ($_POST["typeOfBusiness"] === '' || $_POST["typeOfBusiness"] == null) {
                     $errorEncoded = base64_encode("Select the type of business");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+                if ($_FILES["businessDocument"] === '' || $_FILES["businessDocument"] == null) {
+                    $errorEncoded = base64_encode("Upload business document");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+                if ($_FILES["photoID"] === '' || $_FILES["photoID"] == null) {
+                    $errorEncoded = base64_encode("Upload photo ID");
                     header("location: error.php?message=" . $errorEncoded);
                     exit;
                 }
@@ -140,16 +171,20 @@
                     exit;
                 }
                 $businessName = $_POST["businessName"];
-                $businessNumber = $_POST["businessNumber"];
                 $businessEmail = $_POST["businessEmail"];
+                $businessNumber = $_POST["businessNumber"];
                 $businessAddress = $_POST["businessAddress"];
+                $landmark = $_POST["landmark"];
                 $ghPostAddress = $_POST["ghPostAddress"];
+                $typeOfBusiness = $_POST["typeOfBusiness"];
                 $businessDocument = $uploadedFile['path'];
                 $photoID = $uploadedID['path'];
-                $landmark = $_POST["landmark"];
-                $typeOfBusiness = $_POST["typeOfBusiness"];
-            } 
-        } 
+            } else {
+                $errorEncoded = base64_encode("An unknown error was encountered");
+                header("Location: error.php?message".$errorEncoded);
+                exit();
+            }
+        }
     } else {
         header("location : index.html");
         exit;
@@ -160,19 +195,42 @@
         $paymentOption = $_POST["paymentOption"];
 
         if ($paymentOption == "bank") {
+            // var_dump($_POST);
+            // exit;
 
             if (
                 isset($_POST["bankName"]) && isset($_POST["bankBranch"]) &&
                 isset($_POST["accountNumber"])
-            ) {
+            ) 
+            {
+                if ($_POST["bankName"] === '' || $_POST["bankName"] == null) {
+                    $errorEncoded = base64_encode("Enter bank name");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+                if ($_POST["bankBranch"] === '' || $_POST["bankBranch"] == null) {
+                    $errorEncoded = base64_encode("Enter name of branch");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+                if ($_POST["accountNumber"] === '' || $_POST["accountNumber"] == null) {
+                    $errorEncoded = base64_encode("Enter bank account number");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+
                 $bankName = $_POST["bankName"];
                 $bankBranch = $_POST["bankBranch"];
                 $accountNumber = $_POST["accountNumber"];
-            } else {
-                echo "bank details required";
-                exit;
-            }
+            } 
+            else {
+                $errorEncoded = base64_encode("An unknown error was encountered");
+                header("Location: error.php?message".$errorEncoded);
+                exit();
+            } 
+            
         }
+     
 
         if ($paymentOption == "wallet") {
 
@@ -180,23 +238,43 @@
                 isset($_POST["walletNetwork"]) && isset($_POST["walletNumber"]) &&
                 isset($_POST["walletName"])
             ) {
+                
+                    if ($_POST["walletNetwork"] === '' || $_POST["walletNetwork"] == null) {
+                        $errorEncoded = base64_encode("Enter mobile wallet network");
+                        header("location: error.php?message=" . $errorEncoded);
+                        exit;
+                    }
+                    if ($_POST["walletNumber"] === '' || $_POST["walletNumber"] == null) {
+                        $errorEncoded = base64_encode("Enter mobile wallet number");
+                        header("location: error.php?message=" . $errorEncoded);
+                        exit;
+                    }
+                    if ($_POST["walletName"] === '' || $_POST["walletName"] == null) {
+                        $errorEncoded = base64_encode("Enter mobile wallet name");
+                        header("location: error.php?message=" . $errorEncoded);
+                        exit;
+                    }
                 $walletNetwork = $_POST["walletNetwork"];
                 $walletNumber = $_POST["walletNumber"];
                 $walletName = $_POST["walletName"];
-            } else {
-                echo "wallet details required";
-                exit;
             }
-        }
+                else {
+                    $errorEncoded = base64_encode("An unknown error was encountered");
+                    header("Location: error.php?message".$errorEncoded);
+                    exit();
+                } 
+                
+            }
     }
 
 
-    $insert_stmt = $db->prepare("INSERT INTO registration (userName, phoneNumber, email, 
+$insert_stmt = $db->prepare("INSERT INTO registration (userName, phoneNumber, email, 
 locationAddress, region, profilePicture, businessName,	businessNumber,  businessEmail, businessAddress, 
-ghPostAddress, landmark, paymentOption, accountNumber, walletNetwork, walletName, walletNumber, bankName, bankBranch, businessDocument)  
+ghPostAddress, landmark, paymentOption, accountNumber, walletNetwork, walletName, walletNumber, bankName,
+ bankBranch, businessDocument, typeOfBusiness, photoID, dateOfBirth)  
 VALUES(:fuserName, :fphoneNumber, :femail, :flocationAddress, :fregion, :fprofilePicture, :fbusinessName, 
 :fbusinessNumber,  :fbusinessEmail, :fbusinessAddress, :fghPostAddress, :flandmark,	:fpaymentOption, :faccountNumber,
-:fwalletNetwork, :fwalletName, :fwalletNumber, :fbankName, :fbankBranch, :fbusinessDocument )");
+:fwalletNetwork, :fwalletName, :fwalletNumber, :fbankName, :fbankBranch, :fbusinessDocument, :ftypeOfBusiness, :fphotoID, :fdateOfBirth)");
     $insert_stmt->bindParam(":fuserName", $userName);
     $insert_stmt->bindParam(":fphoneNumber", $phoneNumber);
     $insert_stmt->bindParam(":femail",  $email);
@@ -217,6 +295,9 @@ VALUES(:fuserName, :fphoneNumber, :femail, :flocationAddress, :fregion, :fprofil
     $insert_stmt->bindParam(":fbankName", $bankName);
     $insert_stmt->bindParam(":fbankBranch", $bankBranch);
     $insert_stmt->bindParam(":fbusinessDocument", $businessDocument);
+    $insert_stmt->bindParam(":ftypeOfBusiness", $typeOfBusiness);
+    $insert_stmt->bindParam(":fphotoID", $photoID);
+    $insert_stmt->bindParam(":fdateOfBirth", $dateOfBirth);
 
 
 

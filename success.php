@@ -59,10 +59,10 @@
         <div class="col-12 col-md-6">
           <!-- Content-->
           <div class="welcome-content pr-3">
-            <h2 class="wow fadeInUp" data-wow-delay="100ms" data-wow-duration="1000ms"> Registered Successfully
+            <h2 class="wow fadeInUp" data-wow-delay="100ms" data-wow-duration="1000ms">Registered Successfully
             </h2>
             
-            <p class="mb-4 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1000ms">Thank you.</p>
+            <p class="mb-4 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1000ms">Thank you for your application, you will receive a call or email from the hiring team if you are shortlisted.</p>
           </div>
         </div>
         <div class="col-10 col-md-6  d-none d-lg-block">
