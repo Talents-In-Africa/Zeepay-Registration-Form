@@ -90,6 +90,8 @@
         $businessOwnership = $_POST["businessOwnership"];
 
         if ($businessOwnership == "Yes") {
+            // var_dump($_POST);
+            // exit;
             if (
                 isset($_POST['businessName']) && isset($_POST['businessNumber']) &&
                 isset($_FILES['businessDocument']) && isset($_FILES['photoID']) && isset($_POST['landmark']) && isset($_POST['typeOfBusiness'] ) 
@@ -146,13 +148,8 @@
                 $photoID = $uploadedID['path'];
                 $landmark = $_POST["landmark"];
                 $typeOfBusiness = $_POST["typeOfBusiness"];
-            } else {
-
-                $errorEncoded = base64_encode("Enter business details");
-                header("location: error.php?message=" . $errorEncoded);
-                exit;
-            }
-        }
+            } 
+        } 
     } else {
         header("location : index.html");
         exit;
