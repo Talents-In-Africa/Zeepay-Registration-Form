@@ -75,11 +75,7 @@
             $locationAddress = $_POST["locationAddress"];
             $region = $_POST["region"];
             $profilePicture = $uploadedFile['path'];
-        } else {
-            header("Location: error.php");
-            exit();
-            // exit;
-        }
+        } 
     } else {
         header("Location: index.html");
         exit();
@@ -91,8 +87,8 @@
 
         if ($businessOwnership == "Yes") {
             if (
-                isset($_POST['businessName']) && isset($_POST['businessNumber']) &&
-                isset($_FILES['businessDocument']) && isset($_FILES['photoID']) && isset($_POST['landmark']) && isset($_POST['typeOfBusiness'] ) 
+                isset($_POST['businessName']) && isset($_POST['businessNumber']) &&isset($_POST['businessAddress']) &&
+                isset($_FILES['businessDocument']) && isset($_FILES['ghPostAddress']) && isset($_POST['landmark']) && isset($_FILES['photoID']) && isset($_POST['typeOfBusiness']) && isset($_POST['businessEmail'])
             ) {
 
 
@@ -101,8 +97,18 @@
                     header("location: error.php?message=" . $errorEncoded);
                     exit;
                 }
+                if ($_POST["businessEmail"] === '' || $_POST["businessEmail"] == null) {
+                    $errorEncoded = base64_encode("Enter business Email");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
                 if ($_POST["businessNumber"] === '' || $_POST["businessNumber"] == null) {
                     $errorEncoded = base64_encode("Enter your business Number");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+                if ($_POST["businessAddress"] === '' || $_POST["businessAddress"] == null) {
+                    $errorEncoded = base64_encode("Enter business address");
                     header("location: error.php?message=" . $errorEncoded);
                     exit;
                 }
@@ -111,8 +117,24 @@
                     header("location: error.php?message=" . $errorEncoded);
                     exit;
                 }
+                if ($_POST['ghPostAddress'] === '' || $_POST["ghPostAddress"] == null) {
+                    $errorEncoded = base64_encode("Enter ghana post address");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+                
                 if ($_POST["typeOfBusiness"] === '' || $_POST["typeOfBusiness"] == null) {
                     $errorEncoded = base64_encode("Select the type of business");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+                if ($_FILES["businessDocument"] === '' || $_POST["businessDocument"] == null) {
+                    $errorEncoded = base64_encode("Upload business document");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+                if ($_FILES["photoID"] === '' || $_POST["photoID"] == null) {
+                    $errorEncoded = base64_encode("Upload photo ID");
                     header("location: error.php?message=" . $errorEncoded);
                     exit;
                 }
@@ -138,19 +160,17 @@
                     exit;
                 }
                 $businessName = $_POST["businessName"];
-                $businessNumber = $_POST["businessNumber"];
                 $businessEmail = $_POST["businessEmail"];
+                $businessNumber = $_POST["businessNumber"];
                 $businessAddress = $_POST["businessAddress"];
+                $landmark = $_POST["landmark"];
                 $ghPostAddress = $_POST["ghPostAddress"];
+                $typeOfBusiness = $_POST["typeOfBusiness"];
                 $businessDocument = $uploadedFile['path'];
                 $photoID = $uploadedID['path'];
-                $landmark = $_POST["landmark"];
-                $typeOfBusiness = $_POST["typeOfBusiness"];
             } else {
-
-                $errorEncoded = base64_encode("Enter business details");
-                header("location: error.php?message=" . $errorEncoded);
-                exit;
+                header("Location: error.php");
+                exit();
             }
         }
     } else {
