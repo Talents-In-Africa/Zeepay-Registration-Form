@@ -234,10 +234,10 @@
                                         <div class="form-group">
                                             <h6>How would you want to be paid</h6><br>
                                             <label for="bank-channel" class="radio-inline" style="font-size: 12px; margin-right: 5px;">
-                                                <input type="radio" onClick="paymentOption('bank-channel')" id="bank-channel" name="paymentmethod" style="margin-right: 4px;" value="bank" checked>Bank
+                                                <input type="radio" onClick="paymentoption('bank-channel')" id="bank-channel" name="paymentOption" style="margin-right: 4px;" value="bank" checked>Bank
                                             </label>
                                             <label for="wallet-channel" class="radio-inline" style="font-size: 12px;">
-                                                <input type="radio" onClick="paymentOption('wallet-channel')" id="wallet-channel" style="margin-right: 4px;" name="paymentmethod" value="wallet">Wallet
+                                                <input type="radio" onClick="paymentoption('wallet-channel')" id="wallet-channel" style="margin-right: 4px;" name="paymentOption" value="wallet">Wallet
                                             </label>
                                         </div>
                                     </div>
@@ -382,7 +382,7 @@
     </div>
 
     <script>
-        function paymentOption(option){
+        function paymentoption(option){
             if (option == "bank-channel"){
                 document.getElementById("bankTransaction").style.display = "block"
                 document.getElementById("walletTransaction").style.display = "none"
@@ -394,7 +394,7 @@
             }
         }
         (function() {
-            paymentOption("bank-channel")
+            paymentoption("bank-channel")
         })();
       
 

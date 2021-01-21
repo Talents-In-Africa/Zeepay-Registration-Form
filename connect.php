@@ -89,7 +89,8 @@
             if (
                 isset($_POST['businessName']) && isset($_POST['businessNumber']) && isset($_POST['businessAddress']) &&
                 isset($_FILES['businessDocument']) && isset($_POST['ghPostAddress']) && isset($_POST['landmark']) && isset($_FILES['photoID']) && isset($_POST['typeOfBusiness']) && isset($_POST['businessEmail'])
-            ) {
+            ) 
+            {
 
 
                 if ($_POST["businessName"] === '' || $_POST["businessName"] == null) {
@@ -184,19 +185,42 @@
         $paymentOption = $_POST["paymentOption"];
 
         if ($paymentOption == "bank") {
+            // var_dump($_POST );
+            // exit;
 
             if (
                 isset($_POST["bankName"]) && isset($_POST["bankBranch"]) &&
                 isset($_POST["accountNumber"])
-            ) {
+            ) 
+            {
+                if ($_POST["bankName"] === '' || $_POST["bankName"] == null) {
+                    $errorEncoded = base64_encode("Enter bank name");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+                if ($_POST["bankBranch"] === '' || $_POST["bankBranch"] == null) {
+                    $errorEncoded = base64_encode("Enter name of branch");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+                if ($_POST["accountNumber"] === '' || $_POST["accountNumber"] == null) {
+                    $errorEncoded = base64_encode("Enter bank account number");
+                    header("location: error.php?message=" . $errorEncoded);
+                    exit;
+                }
+
                 $bankName = $_POST["bankName"];
                 $bankBranch = $_POST["bankBranch"];
                 $accountNumber = $_POST["accountNumber"];
-            } else {
-                echo "bank details required";
-                exit;
-            }
+            } 
+            else {
+                $errorEncoded = base64_encode("An unknown error was encountered");
+                header("Location: error.php?message".$errorEncoded);
+                exit();
+            } 
+            
         }
+     
 
         if ($paymentOption == "wallet") {
 
