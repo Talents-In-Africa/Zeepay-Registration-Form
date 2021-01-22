@@ -98,7 +98,8 @@
             // exit;
             if (
                 isset($_POST['businessName']) && isset($_POST['businessNumber']) && isset($_POST['businessAddress']) &&
-                isset($_FILES['businessDocument']) && isset($_POST['ghPostAddress']) && isset($_POST['landmark']) && isset($_FILES['photoID']) && isset($_POST['typeOfBusiness']) 
+                isset($_FILES['businessDocument']) && isset($_POST['ghPostAddress']) && isset($_POST['landmark']) 
+                && isset($_FILES['photoID']) && isset($_POST['typeOfBusiness']) 
             ) 
             {
 

@@ -18,6 +18,75 @@
     <link rel="stylesheet" type="text/css" href="https://agents.myzeepay.com/portal/app-assets/css/colors.css">
     <link rel="stylesheet" type="text/css" href="https://agents.myzeepay.com/portal/app-assets/css/components.css">
     <!-- BEGIN: Body-->
+    <style>
+ .radio-inline {
+
+  display: inline;
+  position: relative;
+  padding-left: 18px;
+  padding-right: 30px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  cursor: pointer;
+  
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radio-inline input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: rgba(241, 87, 113, 0.342);
+  border-radius: 100%;
+  
+}
+
+/* On mouse-over, add a grey background color */
+.radio-inline :hover input ~ .checkmark {
+  background-color: rgb(223, 173, 173);
+}
+
+/* When the radio button is checked, add a blue background */
+.radio-inline  input:checked ~ .checkmark {
+  background-color: rgb(235, 53, 84);
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radio-inline  input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radio-inline  .checkmark:after {
+ 	top: 4px;
+	left: 5px;
+	width: 6px;
+	height: 6px;
+	border-radius: 100%;
+	background: white;
+}
+    </style>
 </head>
 <body class="horizontal-layout horizontal-menu-padding 2-columns pace-done menu-collapsed horizontal-menu"
     data-open="click" data-menu="horizontal-menu" data-col="2-columns" data-new-gr-c-s-check-loaded="14.991.0"
@@ -121,13 +190,17 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <h6>Do you Own a Business</h6><br>
-                                            <label class="radio-inline" style="font-size: 12px; margin-right: 10px;">
-                                                <input type="radio" onClick="businessOwners('yes-option')" id="yes-option" style="padding: 15px;"  name="businessOwnership" style="margin-right: 4px;" value="Yes" checked>Yes
-                                            </label>
-                                            <label class="radio-inline" style="font-size: 12px; margin-left: 10px;">
-                                                <input type="radio" onClick="businessOwners('no-option')"  id="no-option"style="margin-right: 4px;" style="padding: 15px;" name="businessOwnership" value="No">No
-                                            </label>
+                                            <h6>Do you Own a Business</h6> <br>
+                                            <div>
+                                                <label class="radio-inline">
+                                                    <input type="radio" onClick="businessOwners('yes-option')" id="yes-option" name="businessOwnership" value="Yes" checked>Yes
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="radio-inline" >
+                                                    <input type="radio" onClick="businessOwners('no-option')"  id="no-option" name="businessOwnership" value="No">No
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -193,9 +266,11 @@
                                              
                                                 <label  class="radio-inline" style="font-size: 12px; margin-right: 5px;">
                                                     <input type="radio" name="typeOfBusiness" value="Sole-Proprietorship"  checked> Sole Proprietorship
+                                                    <span class="checkmark"></span>
                                                 </label>
                                                 <label  class="radio-inline" style="font-size: 12px; ">
                                                     <input type="radio"  style="margin-right: 4px;" name="typeOfBusiness" value="Ltd Liability">Limited Liability
+                                                    <span class="checkmark"></span>
                                                 </label>
                                         </div>
                                     </div>
@@ -234,9 +309,11 @@
                                             <h6>How would you want to be paid</h6><br>
                                             <label for="bank-channel" class="radio-inline" style="font-size: 12px; margin-right: 5px;">
                                                 <input type="radio" onClick="paymentoption('bank-channel')" id="bank-channel" name="paymentOption" style="margin-right: 4px;" value="bank" checked>Bank
+                                                <span class="checkmark"></span>
                                             </label>
                                             <label for="wallet-channel" class="radio-inline" style="font-size: 12px;">
                                                 <input type="radio" onClick="paymentoption('wallet-channel')" id="wallet-channel" style="margin-right: 4px;" name="paymentOption" value="wallet">Wallet
+                                                <span class="checkmark"></span>
                                             </label>
                                         </div>
                                     </div>
