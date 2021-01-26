@@ -158,7 +158,7 @@
 
                 $businessDocument = $_FILES["businessDocument"];
                 //start process document
-                $uploadedFile = processFileUpload($businessDocument['name'], $businessDocument['type'], $businessDocument['size'], $businessDocument['tmp_name'], 'image/jpg,image/jpeg,image/png', 10000000);
+                $uploadedFile = processFileUpload($businessDocument['name'], $businessDocument['type'], $businessDocument['size'], $businessDocument['tmp_name'], 'image/jpg,image/jpeg,image/png',"pdf","doc", 10000000);
                 //end process document
                 if ($uploadedFile['status'] == 'error') {
                     echo $uploadedFile['message'];
